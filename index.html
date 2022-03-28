@@ -13,25 +13,83 @@
             
             let randomInteger = Math.floor(Math.random() * 3);
 
-            let computerSelection; 
+            let computerRandom; 
             if (randomInteger == 0) {
-                computerSelection = "Rock"
+                computerRandom = "rock"
             } 
             else if (randomInteger == 1) {
-                computerSelection = "Paper"
+                computerRandom = "paper"
             } 
             else {
-                computerSelection = "Scissors"
+                computerRandom = "scissors"
+            }
+            return computerRandom;
+        }
+
+
+        let result;
+        let record = [];
+
+
+        function playRound(playerSelection, computerSelection) {
+            
+            if (playerSelection == computerSelection) {
+                console.log("It's a draw.");
+                result = "draw"
+            }
+            else if (playerSelection == "rock" && computerSelection == "paper") {
+                console.log("Paper beats rock. You lose!")
+                result = "lose"
+            }
+            else if (playerSelection == "rock" && computerSelection == "scissors") {
+                console.log("Rock beats scissors! You win!")
+                result = "win"
             }
 
+            else if (playerSelection == "scissors" && computerSelection == "paper") {
+                console.log("Scissors beats paper! You win!")
+                result = "win"
+
+            }
+            else if (playerSelection == "scissors" && computerSelection == "rock") {
+                console.log("Rock beats scissors. You lose!")
+                result = "lose"
+
+            }
+
+            else if (playerSelection == "paper" && computerSelection == "rock") {
+                console.log("Paper beats rock! You win!")
+                result = "win"
+
+            }
+            else if (playerSelection == "paper" && computerSelection == "scissors") {
+                console.log("Scissors beats paper. You lose!")
+                result = "lose"
+
+            }
+            record.push(result);
+            console.log(record);
         }
 
-        const computerSelection = computerPlay;
-        const playerSelection = (prompt("Rock, Paper, or Scissors?")).toLowerCase();
+        function game() {
 
-        function rps(playerSelection, computerSelection) {
+            for (let g = 1; g<6; g++) {
 
+                console.log(`Round ${g}`);
+
+                let computerSelection = computerPlay();
+
+                playerSelection = (prompt("Rock, Paper, or Scissors?")).toLowerCase();
+
+                console.log(`Computer chose ${computerSelection}`);
+
+                playRound(playerSelection, computerSelection); 
+            
+            }
         }
+
+        game();
+
     </script>
 </body>
 </html>
