@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<script>
+
+
+// BLASTOFF COUNTDOWN 
+
+for (let i = 10; i >= 0; i--) {
+
+    // VV creates a new paragraph 
+    const para = document.createElement('p');
+
+    if (i == 10) {
+        // VV Specifies the text inside the paragraph
+        para.textContent = ("Countdown 10");
+    }
+    else if (i == 0) {
+        para.textContent = ("Blastoff!");
+    }
+    else {
+        para.textContent = (i);
+    }
+
+    // VV Appends the paragraph to the output div
+    output.appendChild(para);
+}
+
+// FILLING IN A GUEST LIST
+
+
+const people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
+
+const admitted = document.querySelector('.admitted');
+const refused = document.querySelector('.refused');
+admitted.textContent = 'Admit: ';
+refused.textContent = 'Refuse: ';
+
+// loop starts here
+for (const person of people) {
+    if (person == "Lola" || person == "Phil") {
+        refused.textContent += (person + ", ");
+    }
+    else {
+        admitted.textContent += `${person}, `;
+    }
+}
+
+
+
+</script>
+
+
+</body>
+</html>

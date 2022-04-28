@@ -4,91 +4,227 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="beginning">
+        <button class="rps">RPS</button>
+    </div>
     <script>
+        const rps = document.querySelector(".rps");
+        rps.addEventListener("click", begin);
 
-        function computerPlay() {
+        let computerScore = 0;
+        let playerScore = 0;
+        let round = 1;
+
+        function begin() {
+            // create the 3 choices and remove rps button
+            const div = document.createElement("div");
+            div.classList.add("choices");
+            const rock = document.createElement("button");
+            rock.classList.add("rock")
+
+            const paper = document.createElement("button");
+            paper.classList.add("paper")
+
+            const scissors = document.createElement("button");
+            scissors.classList.add("scissors")
+
+            const body = document.body
+            rps.remove();
+
+            rock.textContent = "rock";
+            paper.textContent = "paper";
+            scissors.textContent = "scissors";
+
+            div.append(rock);
+            div.append(paper);
+            div.append(scissors);
+
+            body.append(div);
+
             
-            let randomInteger = Math.floor(Math.random() * 3);
+            // runs the game when each button is clicked
+                const btns = document.querySelectorAll("button");
+                btns.forEach(button => {
+                    button.addEventListener("click", function(e){
+                        let playerSelection = button.className;
+                        let computerSelection = computerPlay();
 
-            let computerRandom; 
-            if (randomInteger == 0) {
-                computerRandom = "rock"
-            } 
-            else if (randomInteger == 1) {
-                computerRandom = "paper"
-            } 
-            else {
-                computerRandom = "scissors"
-            }
-            return computerRandom;
+                        const divResults = document.createElement("div")
+                        divResults.classList.add("results");
+                        body.append(divResults);
+
+                        const compChose = document.createElement("div");
+                        compChose.textContent = `Computer chose ${computerSelection}`;
+                        divResults.append(compChose);
+
+                        console.log(`Computer chose ${computerSelection}`);
+                        playRound(playerSelection, computerSelection)
+
+                        function computerPlay() {
+                
+                            let randomInteger = Math.floor(Math.random() * 3);
+
+                            let computerRandom; 
+                            if (randomInteger == 0) {
+                                computerRandom = "rock"
+                            } 
+                            else if (randomInteger == 1) {
+                                computerRandom = "paper"
+                            } 
+                            else {
+                                computerRandom = "scissors"
+                            }
+                            return computerRandom;
+                        }
+
+                        function playRound(playerSelection, computerSelection) {
+
+                            if (playerSelection == computerSelection) {
+                                let roundResult = document.createElement("div");
+                                roundResult.textContent = "It's a draw.";
+                                divResults.append(roundResult);
+
+                                console.log("It's a draw.");
+                                result = "draw"
+                            }
+                            else if (playerSelection == "rock" && computerSelection == "paper") {
+                                let roundResult = document.createElement("div");
+                                roundResult.textContent = "Paper beats rock. You lose!";
+                                divResults.append(roundResult);
+
+                                console.log("Paper beats rock. You lose!")
+                                result = "lose"
+
+                                computerScore += 1;
+                            }
+                            else if (playerSelection == "rock" && computerSelection == "scissors") {
+                                let roundResult = document.createElement("div");
+                                roundResult.textContent = "Rock beats scissors! You win!";
+                                divResults.append(roundResult);
+
+                                console.log("Rock beats scissors! You win!")
+                                result = "win"
+
+                                playerScore += 1;
+                            }
+                            else if (playerSelection == "scissors" && computerSelection == "paper") {
+                                let roundResult = document.createElement("div");
+                                roundResult.textContent = "Scissors beats paper! You win!";
+                                divResults.append(roundResult);
+
+                                console.log("Scissors beats paper! You win!")
+                                result = "win"
+
+                                playerScore += 1;
+                            }
+                            else if (playerSelection == "scissors" && computerSelection == "rock") {
+                                let roundResult = document.createElement("div");
+                                roundResult.textContent = "Rock beats scissors. You lose!";
+                                divResults.append(roundResult);
+
+                                console.log("Rock beats scissors. You lose!")
+                                result = "lose"
+
+                                computerScore += 1;
+                            }
+                            else if (playerSelection == "paper" && computerSelection == "rock") {
+                                let roundResult = document.createElement("div");
+                                roundResult.textContent = "Paper beats rock! You win!";
+                                divResults.append(roundResult);
+
+                                console.log("Paper beats rock! You win!")
+                                result = "win"
+
+                                playerScore += 1;
+                            }
+                            else if (playerSelection == "paper" && computerSelection == "scissors") {
+                                let roundResult = document.createElement("div");
+                                roundResult.textContent = "Scissors beats paper. You lose!";
+                                divResults.append(roundResult);
+
+                                console.log("Scissors beats paper. You lose!")
+                                result = "lose"
+
+                                computerScore += 1;
+                            }
+                        }
+                    
+                    const roundScore = document.createElement("div")
+                    body.append(roundScore);
+
+                    let roundNum = document.createElement("p");
+                    roundNum.textContent = `Round ${round}`;
+                    roundScore.append(roundNum);
+
+                    let pScoreText = document.createElement("span")
+                    pScoreText.textContent = `Player Score: ${playerScore} `;
+                    roundScore.append(pScoreText);
+
+                    let cScoreText = document.createElement("span");
+                    cScoreText.textContent = `Computer Score: ${computerScore}`;
+                    roundScore.append(cScoreText);
+
+                    // IF STATEMENT HERE???
+                    // if round is less than five continie
+                    // if round == 5 create rps and set variables to 0
+
+                    // remove the choices after a round is played and replace with "Play again?"
+                    rock.remove();
+                    paper.remove();
+                    scissors.remove();
+
+                    const playAgain = document.createElement("button");
+                    playAgain.textContent = "Play again?"
+                    body.append(playAgain);
+
+                    let endGame = document.createElement("h1");
+                    if (round == 5) {
+                        if (playerScore > computerScore) {
+                            endGame.textContent = "Congratulations! YOU WIN!";
+                            body.append(endGame);
+                        }
+                        else if (playerScore < computerScore) {
+                            endGame.textContent = "GAME OVER. YOU LOSE.";
+                            body.append(endGame);
+                        }
+                        else {
+                            endGame.textContent = "It is a draw. Try again.";
+                            body.append(endGame);
+                        }
+ 
+                        playAgain.remove();
+
+                        const restart = document.createElement("button");
+                        restart.textContent = "Restart"
+                        body.append(restart);
+
+                        restart.addEventListener("click", function() {
+                            location.reload();
+                        })
+                    }
+
+                    // repeat the game when playAgain is clicked
+                    playAgain.addEventListener("click", function(event) {
+                        playAgain.remove();
+                        divResults.remove();
+                        roundScore.remove();
+                        round++;
+                        begin();
+                    })
+
+                })
+            })
+
+
         }
 
 
-        let result;
-        let record = [];
 
 
-        function playRound(playerSelection, computerSelection) {
-            
-            if (playerSelection == computerSelection) {
-                console.log("It's a draw.");
-                result = "draw"
-            }
-            else if (playerSelection == "rock" && computerSelection == "paper") {
-                console.log("Paper beats rock. You lose!")
-                result = "lose"
-            }
-            else if (playerSelection == "rock" && computerSelection == "scissors") {
-                console.log("Rock beats scissors! You win!")
-                result = "win"
-            }
-
-            else if (playerSelection == "scissors" && computerSelection == "paper") {
-                console.log("Scissors beats paper! You win!")
-                result = "win"
-
-            }
-            else if (playerSelection == "scissors" && computerSelection == "rock") {
-                console.log("Rock beats scissors. You lose!")
-                result = "lose"
-
-            }
-
-            else if (playerSelection == "paper" && computerSelection == "rock") {
-                console.log("Paper beats rock! You win!")
-                result = "win"
-
-            }
-            else if (playerSelection == "paper" && computerSelection == "scissors") {
-                console.log("Scissors beats paper. You lose!")
-                result = "lose"
-
-            }
-            record.push(result);
-            console.log(record);
-        }
-
-        function game() {
-
-            for (let g = 1; g<6; g++) {
-
-                console.log(`Round ${g}`);
-
-                let computerSelection = computerPlay();
-
-                playerSelection = (prompt("Rock, Paper, or Scissors?")).toLowerCase();
-
-                console.log(`Computer chose ${computerSelection}`);
-
-                playRound(playerSelection, computerSelection); 
-            
-            }
-        }
-
-        game();
 
     </script>
 </body>

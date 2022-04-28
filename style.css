@@ -1,0 +1,21 @@
+button {
+    padding:8px 16px;
+}
+.beginning {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body {
+    background-color: rgb(85, 82, 82);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 200px;
+
+}
+
+.choices {
+    display: flex;
+    justify-content: space-evenly; 
+}
