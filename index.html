@@ -35,9 +35,9 @@
             const body = document.body
             rps.remove();
 
-            rock.textContent = "rock";
-            paper.textContent = "paper";
-            scissors.textContent = "scissors";
+            // rock.textContent = "rock";
+            // paper.textContent = "paper";
+            // scissors.textContent = "scissors";
 
             div.append(rock);
             div.append(paper);
@@ -53,13 +53,58 @@
                         let playerSelection = button.className;
                         let computerSelection = computerPlay();
 
+                        const roundBegin = document.createElement("div");
+                        roundBegin.classList.add("roundBegin");
+                        body.append(roundBegin);
+
                         const divResults = document.createElement("div")
                         divResults.classList.add("results");
                         body.append(divResults);
 
+                        // prints computer choice as image
                         const compChose = document.createElement("div");
-                        compChose.textContent = `Computer chose ${computerSelection}`;
+                        compChose.classList.add("compChose")
+                        compChose.textContent = `Computer chose: `;
                         divResults.append(compChose);
+
+                        const compChoseImg = document.createElement("img")
+                        compChoseImg.classList.add("compChoseImg")
+                        if (computerSelection == "rock") {
+                            compChoseImg.src = 'images/rock.png'
+                            compChose.appendChild(compChoseImg);
+                        }
+                        else if (computerSelection == "paper") {
+                            compChoseImg.src = 'images/paper.png'
+                            compChose.appendChild(compChoseImg);
+                        }
+                        else if (computerSelection == "scissors") {
+                            compChoseImg.src = 'images/scissors.png'
+                            compChose.appendChild(compChoseImg);
+                        }
+
+                        // prints player choice as image
+                        const playerChose = document.createElement("div");
+                        playerChose.classList.add("playerChose")
+                        playerChose.textContent = `Player chose: `;
+                        divResults.append(playerChose);
+
+                        const playerChoseImg = document.createElement("img")
+                        playerChoseImg.classList.add("playerChoseImg")
+                        if (playerSelection == "rock") {
+                            playerChoseImg.src = 'images/rock.png'
+                            divResults.append(playerChose);
+                            playerChose.appendChild(playerChoseImg);
+                        }
+                        else if (playerSelection == "paper") {
+                            playerChoseImg.src = 'images/paper.png'
+                            divResults.append(playerChose);
+                            playerChose.appendChild(playerChoseImg);
+                        }
+                        else if (playerSelection == "scissors") {
+                            playerChoseImg.src = 'images/scissors.png'
+                            divResults.append(playerChose);
+                            playerChose.appendChild(playerChoseImg);
+                        }
 
                         console.log(`Computer chose ${computerSelection}`);
                         playRound(playerSelection, computerSelection)
@@ -86,6 +131,7 @@
                             if (playerSelection == computerSelection) {
                                 let roundResult = document.createElement("div");
                                 roundResult.textContent = "It's a draw.";
+                                roundResult.classList.add("roundResult");
                                 divResults.append(roundResult);
 
                                 console.log("It's a draw.");
@@ -94,6 +140,7 @@
                             else if (playerSelection == "rock" && computerSelection == "paper") {
                                 let roundResult = document.createElement("div");
                                 roundResult.textContent = "Paper beats rock. You lose!";
+                                roundResult.classList.add("roundResult");
                                 divResults.append(roundResult);
 
                                 console.log("Paper beats rock. You lose!")
@@ -104,6 +151,7 @@
                             else if (playerSelection == "rock" && computerSelection == "scissors") {
                                 let roundResult = document.createElement("div");
                                 roundResult.textContent = "Rock beats scissors! You win!";
+                                roundResult.classList.add("roundResult");
                                 divResults.append(roundResult);
 
                                 console.log("Rock beats scissors! You win!")
@@ -114,6 +162,7 @@
                             else if (playerSelection == "scissors" && computerSelection == "paper") {
                                 let roundResult = document.createElement("div");
                                 roundResult.textContent = "Scissors beats paper! You win!";
+                                roundResult.classList.add("roundResult");
                                 divResults.append(roundResult);
 
                                 console.log("Scissors beats paper! You win!")
@@ -124,6 +173,7 @@
                             else if (playerSelection == "scissors" && computerSelection == "rock") {
                                 let roundResult = document.createElement("div");
                                 roundResult.textContent = "Rock beats scissors. You lose!";
+                                roundResult.classList.add("roundResult");
                                 divResults.append(roundResult);
 
                                 console.log("Rock beats scissors. You lose!")
@@ -134,6 +184,7 @@
                             else if (playerSelection == "paper" && computerSelection == "rock") {
                                 let roundResult = document.createElement("div");
                                 roundResult.textContent = "Paper beats rock! You win!";
+                                roundResult.classList.add("roundResult");
                                 divResults.append(roundResult);
 
                                 console.log("Paper beats rock! You win!")
@@ -144,6 +195,7 @@
                             else if (playerSelection == "paper" && computerSelection == "scissors") {
                                 let roundResult = document.createElement("div");
                                 roundResult.textContent = "Scissors beats paper. You lose!";
+                                roundResult.classList.add("roundResult");
                                 divResults.append(roundResult);
 
                                 console.log("Scissors beats paper. You lose!")
@@ -154,23 +206,23 @@
                         }
                     
                     const roundScore = document.createElement("div")
+                    roundScore.classList.add("roundScore")
                     body.append(roundScore);
 
                     let roundNum = document.createElement("p");
-                    roundNum.textContent = `Round ${round}`;
-                    roundScore.append(roundNum);
-
-                    let pScoreText = document.createElement("span")
-                    pScoreText.textContent = `Player Score: ${playerScore} `;
-                    roundScore.append(pScoreText);
-
+                    roundNum.textContent = `ROUND ${round}`;
+                    roundBegin.append(roundNum);
+                    
                     let cScoreText = document.createElement("span");
+                    cScoreText.classList.add("cScoreText")
                     cScoreText.textContent = `Computer Score: ${computerScore}`;
                     roundScore.append(cScoreText);
 
-                    // IF STATEMENT HERE???
-                    // if round is less than five continie
-                    // if round == 5 create rps and set variables to 0
+                    let pScoreText = document.createElement("span")
+                    pScoreText.classList.add("pScoreText")
+                    pScoreText.textContent = `Player Score: ${playerScore} `;
+                    roundScore.append(pScoreText);
+
 
                     // remove the choices after a round is played and replace with "Play again?"
                     rock.remove();
@@ -179,6 +231,7 @@
 
                     const playAgain = document.createElement("button");
                     playAgain.textContent = "Play again?"
+                    playAgain.classList.add("playAgain");
                     body.append(playAgain);
 
                     let endGame = document.createElement("h1");
@@ -199,6 +252,7 @@
                         playAgain.remove();
 
                         const restart = document.createElement("button");
+                        restart.classList.add("restart");
                         restart.textContent = "Restart"
                         body.append(restart);
 
@@ -212,6 +266,7 @@
                         playAgain.remove();
                         divResults.remove();
                         roundScore.remove();
+                        roundBegin.remove();
                         round++;
                         begin();
                     })

@@ -1,5 +1,7 @@
 button {
     padding:8px 16px;
+    border: 0px;
+    border-radius: 4px;
 }
 .beginning {
     display: flex;
@@ -12,10 +14,82 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     margin-top: 200px;
-
 }
 
 .choices {
     display: flex;
     justify-content: space-evenly; 
 }
+
+.scissors {
+    background:url('images/scissors.png');
+    height: 158px;
+    width: 96px;
+    border: 0px;
+}
+
+.rock {
+    background:url("images/rock.png");
+    height: 158px;
+    width: 96px;
+    border: 0px;
+}
+
+.paper {
+    background:url("images/paper.png");
+    height: 158px;
+    width: 96px;
+    border: 0px;
+}
+button:hover {
+    transform: scale(1.1);
+}
+
+.rps:hover, .restart:hover, .playAgain:hover {
+    box-shadow: 3px 3px 50px rgb(147, 147, 147);
+}
+
+.compChoseImg, .playerChoseImg {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.results {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.compChose, .playerChose {
+    width: 50%;
+    margin-bottom: 50px;
+    font-size: larger;
+}
+
+.restart, .playAgain {
+    margin: 20px;
+}
+
+.roundScore {
+    margin-top: 30px;
+    font-size: large;
+    display: flex;
+
+}
+.pScoreText, .cScoreText {
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 8px;
+    margin: 0px 5px;
+}
+
+
+.roundBegin {
+    font-size: x-large;
+    margin-top: -100px;
+    margin-bottom: 50px;
+}
+
